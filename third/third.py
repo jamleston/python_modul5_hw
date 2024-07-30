@@ -19,10 +19,14 @@ def load_logs(file_path: str) -> list:
             return list_of_logs
     except (TypeError, FileNotFoundError):
         answer = 'path is not correct'
-        print(answer)
-        return False
+        return(answer)
 
+def filter_logs_by_level(logs: list, level: str) -> list:
+    filterFunc = filter(lambda x: level.upper() == x['type'], logs)
+    result = list(filterFunc)
+    return(result)
 
-path = Path('third//log.txt')
-a = load_logs(path)
-print(a)
+path1 = Path('third//log.txt')
+a = load_logs(path1)
+result = filter_logs_by_level(a, 'info')
+print(result)
